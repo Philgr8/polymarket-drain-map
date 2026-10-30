@@ -1,0 +1,506 @@
+<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Polymarket drain, 29 Oct 2026</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@600;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"><style>:root{--bg:#0a0a0a;--ink:#d0d0d0;--hi:#f5f5f5;--mut:#8c8c8c;--rule:#3d3d3d;--row:#2a2a2a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:15px;line-height:1.55}
+.wrap{max-width:1280px;margin:0 auto;padding:40px 16px 64px}
+.sheet{border:1px solid var(--rule);padding:24px 24px 32px}
+a{color:var(--hi)}
+h1{margin:0 0 4px;font-family:'Martian Mono',monospace;font-weight:800;font-size:clamp(20px,3vw,30px);line-height:1.16;letter-spacing:-.02em;color:var(--hi)}
+.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--mut);padding-bottom:12px;border-bottom:1px solid var(--rule);margin-bottom:24px}
+.snap{color:var(--mut)}
+h2{margin:36px 0 10px;display:flex;align-items:center;gap:12px;font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:14px;letter-spacing:.08em;color:var(--mut);text-transform:uppercase}
+h2::after{content:"";flex-grow:1;border-top:1px dashed var(--rule)}
+.dim{color:var(--mut)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.k{background:var(--bg);padding:10px 12px}.kl{color:var(--mut);font-family:'IBM Plex Mono',monospace;font-size:13px}.kv{font-family:'IBM Plex Mono',monospace;font-size:20px;color:var(--hi);text-align:right}.kc{color:var(--mut);font-size:11px;line-height:1.35;margin-top:3px}
+table{border-collapse:collapse;width:100%;font-family:'IBM Plex Mono',monospace;font-size:13px}
+th,td{padding:6px 8px;border-bottom:1px solid var(--row);text-align:left;vertical-align:top}th{color:var(--mut);font-weight:400;border-bottom-color:var(--rule)}td{color:var(--ink)}
+.r{text-align:right;font-variant-numeric:tabular-nums}
+.map{border:1px solid var(--rule)}.map iframe{display:block;width:100%;height:88vh;border:0;background:var(--bg)}</style></head><body><div class=wrap><div class=sheet>
+<div class=top><span>Polymarket incident</span><span class=snap>last traced transfer 2026-10-30T03:25:11Z UTC &middot; built 2026-10-30 13:08 UTC</span></div>
+<h1>Polymarket drain, 29 Oct 2026</h1>
+<section id=kpis><h2>Key figures</h2><div class=kpis><div class=k><div class=kl>drained on chain</div><div class=kv>$2,709,595</div><div class=kc>USDC.e taken from victim wallets on Polygon, 29 Oct 2026 17:10-18:10 UTC</div></div><div class=k><div class=kl>victim wallets</div><div class=kv>710</div><div class=kc>distinct wallets drained; some held more than one trading account</div></div><div class=k><div class=kl>drain transactions</div><div class=kv>981</div><div class=kc>withdrawals from victim wallets, every one delivering POL to the collector address</div></div><div class=k><div class=kl>attacker wallets</div><div class=kv>4</div><div class=kc>collector plus the wallets it paid out to</div></div><div class=k><div class=kl>traced transfers</div><div class=kv>59</div><div class=kc>transfers touching a listed attacker wallet, each with a transaction hash</div></div><div class=k><div class=kl>chains</div><div class=kv>2</div><div class=kc>ethereum, polygon</div></div></div></section>
+<section id=chains><h2>By chain</h2><table class=''><tr><th>chain</th><th class=r>transfers</th><th class=r>attacker wallets involved</th></tr><tr><td>ethereum</td><td class=r>27</td><td class=r>1</td></tr><tr><td>polygon</td><td class=r>32</td><td class=r>4</td></tr></table></section>
+<section id=map><h2>Fund-flow map</h2><div class=map><iframe id=mapf title='Fund-flow map' srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1,viewport-fit=cover&quot;&gt;
+&lt;title&gt;Polymarket drain: traced transfers by wallet&lt;/title&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://fonts.googleapis.com/css2?family=Martian+Mono:wght@500;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500&amp;display=swap&quot;&gt;
+&lt;style&gt;
+/* layout: blueprint frame, prompt bar on top, lanes (chains) stacked, hops as columns left to right, detail drawer on the right */
+:root{
+  --bg:#0a0a0a; --panel:#111111; --rule:#2a2a2a; --rule2:#3d3d3d;
+  --ink:#d0d0d0; --dim:#8c8c8c; --faint:#5e5e5e; --hi:#f5f5f5; --inv:#0a0a0a;
+  --mono:&#x27;IBM Plex Mono&#x27;,ui-monospace,monospace; --disp:&#x27;Martian Mono&#x27;,&#x27;IBM Plex Mono&#x27;,monospace; --sans:&#x27;IBM Plex Sans&#x27;,system-ui,sans-serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme=&quot;dark&quot;]){
+  --bg:#ffffff; --panel:#f3f3f3; --rule:#dcdcdc;
+  --rule2:#8f8f8f; --ink:#1c1c1c; --dim:#555555;
+  --faint:#9a9a9a; --hi:#000000; --inv:#ffffff; color-scheme:light}}
+:root[data-theme=&quot;light&quot;]{
+  --bg:#ffffff; --panel:#f3f3f3; --rule:#dcdcdc; --rule2:#8f8f8f;
+  --ink:#1c1c1c; --dim:#555555; --faint:#9a9a9a; --hi:#000000; --inv:#ffffff; color-scheme:light}
+:root[data-theme=&quot;dark&quot;]{
+  --bg:#0a0a0a; --panel:#111111; --rule:#2a2a2a; --rule2:#3d3d3d;
+  --ink:#d0d0d0; --dim:#8c8c8c; --faint:#5e5e5e; --hi:#f5f5f5; --inv:#0a0a0a; color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font:13px/1.45 var(--mono);margin:0}
+.wrap{height:100%;box-sizing:border-box;padding:12px 16px;display:flex;flex-direction:column;gap:10px}
+.bar{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;color:var(--dim);font-size:12px}
+.bar b{color:var(--ink);font-weight:500}
+.bar .r{margin-left:auto}
+.head{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 20px}
+h1{font:700 19px/1.2 var(--disp);color:var(--hi);margin:0;letter-spacing:-.01em;text-wrap:balance;flex:1 1 420px;min-width:0}
+h1 .eb{display:inline-block;font:500 11px var(--mono);letter-spacing:.16em;color:var(--dim);margin-bottom:6px}
+.snap{color:var(--dim);font-size:12px;flex:1 1 300px;min-width:0}
+.snap b{color:var(--ink);font-weight:500}
+.tools{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+button,input{font:inherit;font-size:12px;color:var(--ink);background:var(--bg);border:1px solid var(--rule2);padding:5px 10px;border-radius:0}
+button{cursor:pointer}
+button:hover{border-color:var(--ink)}
+button:focus-visible,input:focus-visible,a:focus-visible,summary:focus-visible,.map:focus-visible{outline:2px solid var(--hi);outline-offset:1px}
+button[aria-pressed=&quot;true&quot;]{background:var(--hi);color:var(--inv);border-color:var(--hi)}
+input{width:190px;max-width:100%}
+input::placeholder{color:var(--faint)}
+.stage{flex:1;min-height:420px;display:flex;gap:0;border:1px solid var(--rule2);position:relative;min-width:0}
+.map{flex:1;min-width:0;position:relative;overflow:hidden;cursor:grab;touch-action:none}
+.map.drag{cursor:grabbing}
+svg{display:block;width:100%;height:100%}
+svg.lod .elabel:not(.on){display:none}
+.legend{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center;color:var(--dim);font-size:12px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.ls{width:28px;height:0;border-top:1.5px solid var(--ink)}
+.ls.m{border-top-style:dashed}.ls.l{border-top:2px dotted var(--ink)}
+.sw{width:22px;height:12px;border:1px solid var(--ink)}
+.sw.held{background:var(--hi);border-color:var(--hi)}.sw.src{border-style:dashed}
+.drawer{width:340px;flex-shrink:0;border-left:1px solid var(--rule2);background:var(--bg);padding:14px 16px;overflow:auto;box-sizing:border-box}
+.drawer h2{font:600 12px var(--mono);color:var(--hi);margin:0 0 4px}
+.drawer .addr{font:700 14px var(--disp);color:var(--hi);word-break:break-all;margin:6px 0 2px}
+.drawer p{font:13.5px/1.5 var(--sans);color:var(--dim);margin:8px 0}
+.drawer a{color:var(--hi);text-underline-offset:2px}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--rule);font-variant-numeric:tabular-nums}
+.kv&gt;span:first-child{color:var(--dim);flex-shrink:0}
+.kv&gt;span:last-child{text-align:right;min-width:0;overflow-wrap:anywhere}
+.tag{display:inline-block;background:var(--hi);color:var(--inv);padding:1px 6px;font-size:11px;letter-spacing:.08em}
+.sec{font:500 11px var(--mono);letter-spacing:.14em;color:var(--dim);margin:14px 0 4px}
+.ed{padding:6px 0;border-bottom:1px solid var(--rule);font-size:12px;font-variant-numeric:tabular-nums}
+.ed summary{cursor:pointer;list-style:none}
+.ed summary::-webkit-details-marker{display:none}
+.ed summary::before{content:&quot;+ &quot;;color:var(--dim)}
+.ed[open] summary::before{content:&quot;- &quot;}
+.ed .t{color:var(--dim)}
+.ed .tx{display:block;margin:3px 0 0 12px;color:var(--dim);overflow-wrap:anywhere;font-size:11px}
+.jump{background:none;border:0;padding:0;color:var(--hi);text-decoration:underline;text-underline-offset:2px;font:inherit;cursor:pointer}
+.foot{display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--faint);font-size:12px}
+.foot .r{margin-left:auto}
+.hint{position:absolute;left:10px;bottom:8px;color:var(--faint);font-size:12px;pointer-events:none;background:var(--bg);padding:0 4px}
+@media (max-width:760px){.wrap{padding:10px 12px;height:auto;min-height:100%}.stage{flex-direction:column}.drawer{width:auto;border-left:0;border-top:1px solid var(--rule2);max-height:320px}.map{min-height:380px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+&lt;/style&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;wrap&quot;&gt;
+  &lt;div class=&quot;bar&quot;&gt;&lt;span&gt;&lt;b&gt;fish&lt;/b&gt; &amp;mdash; ~/cases/polymarket_2026-10-30 &amp;middot; &lt;b&gt;polymarket&lt;/b&gt;&lt;/span&gt;&lt;span class=&quot;r&quot;&gt;sheet map &amp;middot; live&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;head&quot;&gt;
+    &lt;h1&gt;&lt;span class=&quot;eb&quot;&gt;POLYMARKET DRAIN &amp;middot; TRACED TRANSFERS BY WALLET&lt;/span&gt;&lt;br&gt;Multi-chain, 29&amp;ndash;30 Oct 2026&lt;/h1&gt;
+    &lt;div class=&quot;snap&quot; id=&quot;snap&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;tools&quot;&gt;
+      &lt;button id=&quot;zin&quot; aria-label=&quot;Zoom in&quot;&gt;+&lt;/button&gt;&lt;button id=&quot;zout&quot; aria-label=&quot;Zoom out&quot;&gt;&amp;minus;&lt;/button&gt;&lt;button id=&quot;fit&quot;&gt;fit&lt;/button&gt;
+      &lt;input id=&quot;q&quot; type=&quot;search&quot; placeholder=&quot;find address or tx (prefix)&quot; aria-label=&quot;Find address or transaction by prefix&quot;&gt;
+      &lt;button id=&quot;th&quot; title=&quot;Switch theme&quot;&gt;theme: auto&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;legend&quot;&gt;
+    &lt;span&gt;&lt;i class=&quot;sw src&quot;&gt;&lt;/i&gt;origin wallet&lt;/span&gt;
+    &lt;span&gt;line weight = amount within its asset &amp;middot; times UTC&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;stage&quot;&gt;
+    &lt;div class=&quot;map&quot; id=&quot;map&quot; tabindex=&quot;0&quot; aria-label=&quot;Transfer map. Arrow keys pan, plus and minus zoom, 0 fits.&quot;&gt;&lt;svg id=&quot;svg&quot; role=&quot;group&quot; aria-label=&quot;Transfer map by wallet&quot;&gt;&lt;defs&gt;&lt;pattern id=&quot;gr&quot; width=&quot;8&quot; height=&quot;8&quot; patternUnits=&quot;userSpaceOnUse&quot;&gt;&lt;line x1=&quot;0&quot; y1=&quot;0&quot; x2=&quot;8&quot; y2=&quot;0&quot; stroke=&quot;var(--ink)&quot; stroke-opacity=&quot;.035&quot;/&gt;&lt;/pattern&gt;&lt;/defs&gt;&lt;g id=&quot;vp&quot;&gt;&lt;/g&gt;&lt;/svg&gt;&lt;div class=&quot;hint&quot;&gt;drag to pan &amp;middot; wheel to zoom &amp;middot; click a box&lt;/div&gt;&lt;/div&gt;
+    &lt;aside class=&quot;drawer&quot; id=&quot;dr&quot; aria-live=&quot;polite&quot;&gt;&lt;/aside&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;foot&quot;&gt;&lt;span&gt;on-chain data 29&amp;ndash;30 Oct 2026 &amp;middot; all times UTC&lt;/span&gt;&lt;span class=&quot;r&quot;&gt;every edge is a transaction read on a public explorer &amp;middot; click a box for amounts, times and hashes&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script type=&quot;application/json&quot; id=&quot;data&quot;&gt;{&quot;lanes&quot;:[{&quot;id&quot;:&quot;ethereum&quot;,&quot;label&quot;:&quot;# ethereum&quot;},{&quot;id&quot;:&quot;polygon&quot;,&quot;label&quot;:&quot;# polygon&quot;}],&quot;nodes&quot;:[{&quot;a&quot;:&quot;0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f&quot;,&quot;l&quot;:&quot;polygon&quot;,&quot;c&quot;:0,&quot;r&quot;:&quot;TERMINAL: Relay router&quot;,&quot;cf&quot;:&quot;H&quot;,&quot;src&quot;:1},{&quot;a&quot;:&quot;0x3f99139f1c5854bb628c2e576aaf638e99dffc18&quot;,&quot;l&quot;:&quot;polygon&quot;,&quot;c&quot;:1,&quot;r&quot;:&quot;ATTACKER: collector: received the POL of every drain withdrawal&quot;,&quot;cf&quot;:&quot;H&quot;},{&quot;a&quot;:&quot;0x15844b1e3481a8ba02e5126daff78f7a067775c9&quot;,&quot;l&quot;:&quot;polygon&quot;,&quot;c&quot;:0,&quot;r&quot;:&quot;VICTIM: sent to the collector address in the incident window&quot;,&quot;cf&quot;:&quot;H&quot;,&quot;src&quot;:1},{&quot;a&quot;:&quot;0xe111180000d2663c0091e4f400237545b87b996b&quot;,&quot;l&quot;:&quot;polygon&quot;,&quot;c&quot;:0,&quot;r&quot;:&quot;recipient, not listed&quot;,&quot;cf&quot;:&quot;&quot;,&quot;src&quot;:1},{&quot;a&quot;:&quot;0x5a2764fbbe5d139ef0ed988ec5f95320ce730c0b&quot;,&quot;l&quot;:&quot;polygon&quot;,&quot;c&quot;:1,&quot;r&quot;:&quot;recipient, not listed&quot;,&quot;cf&quot;:&quot;&quot;},{&quot;a&quot;:&quot;0xe4c4c39c1733e1c7c06b79f97ed442b68df41ec6&quot;,&quot;l&quot;:&quot;polygon&quot;,&quot;c&quot;:2,&quot;r&quot;:&quot;ATTACKER: received 18,613,584 MATIC from 0x3F99139F&quot;,&quot;cf&quot;:&quot;H&quot;},{&quot;a&quot;:&quot;0x5392587814ce8c6af6789764f88e5e9ab0b9962c&quot;,&quot;l&quot;:&quot;polygon&quot;,&quot;c&quot;:2,&quot;r&quot;:&quot;ATTACKER: received 4,295,442 MATIC from 0x3F99139F&quot;,&quot;cf&quot;:&quot;H&quot;},{&quot;a&quot;:&quot;0x3f7019221a925537dc20767c38e80a7127fb1ffa&quot;,&quot;l&quot;:&quot;ethereum&quot;,&quot;c&quot;:1,&quot;r&quot;:&quot;recipient, not listed&quot;,&quot;cf&quot;:&quot;&quot;},{&quot;a&quot;:&quot;0x74e940e4eb470a9d8b78c5eb8919938041219897&quot;,&quot;l&quot;:&quot;ethereum&quot;,&quot;c&quot;:2,&quot;r&quot;:&quot;recipient, not listed&quot;,&quot;cf&quot;:&quot;&quot;},{&quot;a&quot;:&quot;0xc91ee0574a14446de200923729c349b9cae19b60&quot;,&quot;l&quot;:&quot;polygon&quot;,&quot;c&quot;:2,&quot;r&quot;:&quot;ATTACKER: received 5,727,258 MATIC from 0x3F99139F&quot;,&quot;cf&quot;:&quot;H&quot;},{&quot;a&quot;:&quot;0xf70da97812cb96acdf810712aa562db8dfa3dbef&quot;,&quot;l&quot;:&quot;ethereum&quot;,&quot;c&quot;:0,&quot;r&quot;:&quot;BRIDGE: Relay.link&quot;,&quot;cf&quot;:&quot;H&quot;,&quot;src&quot;:1},{&quot;a&quot;:&quot;0x0729e2a4716d9f7dd17858d5d504426d228697f7&quot;,&quot;l&quot;:&quot;ethereum&quot;,&quot;c&quot;:0,&quot;r&quot;:&quot;recipient, not listed&quot;,&quot;cf&quot;:&quot;&quot;,&quot;src&quot;:1},{&quot;a&quot;:&quot;0xe5e76a4d73f3bfb5cc9a8f53d4f8459fcac495f6&quot;,&quot;l&quot;:&quot;ethereum&quot;,&quot;c&quot;:2,&quot;r&quot;:&quot;recipient, not listed&quot;,&quot;cf&quot;:&quot;&quot;},{&quot;a&quot;:&quot;0x401f6c983ea34274ec46f84d70b31c151321188b&quot;,&quot;l&quot;:&quot;ethereum&quot;,&quot;c&quot;:0,&quot;r&quot;:&quot;BRIDGE: Polygon&quot;,&quot;cf&quot;:&quot;H&quot;,&quot;src&quot;:1},{&quot;a&quot;:&quot;0x9ab3c17b1a37886f1d702945fcf8016e3e549b18&quot;,&quot;l&quot;:&quot;ethereum&quot;,&quot;c&quot;:2,&quot;r&quot;:&quot;recipient, not listed&quot;,&quot;cf&quot;:&quot;&quot;},{&quot;a&quot;:&quot;0xd90e2f925da726b50c4ed8d0fb90ad053324f31b&quot;,&quot;l&quot;:&quot;ethereum&quot;,&quot;c&quot;:3,&quot;r&quot;:&quot;recipient, not listed&quot;,&quot;cf&quot;:&quot;&quot;},{&quot;a&quot;:&quot;0x709de0b97e369661c99ad54f2b858139897d3dba&quot;,&quot;l&quot;:&quot;ethereum&quot;,&quot;c&quot;:0,&quot;r&quot;:&quot;recipient, not listed&quot;,&quot;cf&quot;:&quot;&quot;,&quot;src&quot;:1}],&quot;rows&quot;:[[0,1,&quot;2026-10-29T17:12:50Z&quot;,&quot;805851.0119397459&quot;,&quot;MATIC&quot;,&quot;0x0e0468ddf77e82c8ccfb34cc0b0420a50560ded27b537114212b610b5d5d4843&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:28:19Z&quot;,&quot;599442.0032465401&quot;,&quot;MATIC&quot;,&quot;0x4219a216970e463b419980fec40c6763f62ad8b4d46bf079f6c5e0c47fd54617&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:28:31Z&quot;,&quot;2249337.9087563986&quot;,&quot;MATIC&quot;,&quot;0xee3413134d3815d378bec6a3d0acded1e54fb5b16a9ba33ce00d7c11fd2a8893&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:28:43Z&quot;,&quot;244598.7752613889&quot;,&quot;MATIC&quot;,&quot;0x044bfbffc00512aadac50259e2b9e85b6a623e0e2a7a9b34d14922a20021df19&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[2,1,&quot;2026-10-29T17:29:43Z&quot;,&quot;496.281645&quot;,&quot;USDCE&quot;,&quot;0x11a113364ba1d0be66701eb77a79a0d90ef20cca0f7e89ce814eef204df4ac37&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:33:02Z&quot;,&quot;3323281.2921982086&quot;,&quot;MATIC&quot;,&quot;0xd49c245f1d0f97c3d16fc2f846dbe12b3c25944f67e7661706047de3bab9db2f&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:33:32Z&quot;,&quot;191653.5922808261&quot;,&quot;MATIC&quot;,&quot;0x2990cf979302ab2f82b80d115a67d9bd89a965318e3c9cc2b6596d4cf5757adf&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:35:23Z&quot;,&quot;228916.31193821284&quot;,&quot;MATIC&quot;,&quot;0xc375082e9ad6ad20aaccd9f743119b774ff7301ad82c38328ff4d93cd1c18c31&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:36:44Z&quot;,&quot;221913.9989504826&quot;,&quot;MATIC&quot;,&quot;0xbb9230a0bc1b765ffed8e5218af6d97e8de98460b5d43a3112e4089ff7b5b648&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:37:41Z&quot;,&quot;232581.29483115295&quot;,&quot;MATIC&quot;,&quot;0x0d166f0b77851ab5fc6580a46d77b88717b3c77be5916132d4a48f787d8807be&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:40:16Z&quot;,&quot;316204.07095522096&quot;,&quot;MATIC&quot;,&quot;0x2dfe1556dad13d45af370cd50d167f2c27f93420c1ab3aca47e9a2b0b8244048&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:41:50Z&quot;,&quot;533019.0412270495&quot;,&quot;MATIC&quot;,&quot;0x9f472fb0a4658e4de3fcdb461b5747c7b1888af623fa215cc45a41f258fb8575&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:42:13Z&quot;,&quot;937294.2547853924&quot;,&quot;MATIC&quot;,&quot;0x8feea42178b7b52718f95f4d414fd0e726c44c8a623aa047b3cc0bbbd6ca2138&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:46:41Z&quot;,&quot;882639.7021295148&quot;,&quot;MATIC&quot;,&quot;0x425edc0c3165fb7e790e9926eca269be2e29d9f2ad6ce52e9eb4f139465c4ad7&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:49:11Z&quot;,&quot;204318.69168577285&quot;,&quot;MATIC&quot;,&quot;0xf4427311339769217c72a11af21ee4e6de8dfdc7c85061a9726da50b591f7e75&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:49:17Z&quot;,&quot;348937.82484599715&quot;,&quot;MATIC&quot;,&quot;0xeb891e4263ad7097c20ca7ff7c22ff2ba60cf7e4c21f1e4496c9ad3ac616c31e&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:49:23Z&quot;,&quot;633182.97592904&quot;,&quot;MATIC&quot;,&quot;0x1230e7e2d32d3a28cc0f9ba5f861cfefb8cf811db7b39ea526529a4dd2b2ee7f&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:50:38Z&quot;,&quot;288475.76035790134&quot;,&quot;MATIC&quot;,&quot;0xb78f00622228b7ad6bf3150013e6d7b457f894c5e57fe5b70f3f46bcc7228290&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:51:04Z&quot;,&quot;443970.7860192287&quot;,&quot;MATIC&quot;,&quot;0xcc77e0db2e9789e936c7b944c5256fb6fa21fc87aa1734f1092f8c261bcb6583&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:52:01Z&quot;,&quot;196974.33200378576&quot;,&quot;MATIC&quot;,&quot;0x45ad5c56a43d15b981fd5b4c36d61231683eacdfeab1623a972310581cc4c93c&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:52:07Z&quot;,&quot;190628.8367356632&quot;,&quot;MATIC&quot;,&quot;0xc29e3446fe720fa4525a9c1de37fd17ad94fd76a3f57a2c087a1750db52d01fe&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:52:22Z&quot;,&quot;2369224.3500217143&quot;,&quot;MATIC&quot;,&quot;0xc4834396c308ae115da7738156f3fe073c30b4badfe743a810533e2b84177add&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:52:37Z&quot;,&quot;324330.26899297826&quot;,&quot;MATIC&quot;,&quot;0xe5c63ff087bb0ce1aeceaa12d391d25f5da7c39aea9b4425bebd965ac8b2af53&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:52:55Z&quot;,&quot;205893.46923865602&quot;,&quot;MATIC&quot;,&quot;0x1df8659eacea76758cf543a6548a6ace16fcbfb58ce9517bafbf9d002317dbe8&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[3,4,&quot;2026-10-29T17:54:43Z&quot;,&quot;1270.37477&quot;,&quot;pUSD&quot;,&quot;0x0082057804eda7bc90fd30c2f2545b553bf637fb1cfa27de8f0611e5877c95a0&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[3,4,&quot;2026-10-29T17:54:55Z&quot;,&quot;619.7788&quot;,&quot;pUSD&quot;,&quot;0x23b6cacd62841b6988c65c9e8b54bd3f66e4b5924dbd498327105c47919502e6&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T17:55:13Z&quot;,&quot;194415.52889738287&quot;,&quot;MATIC&quot;,&quot;0x6cb122bb2ee73bd6be95976ad067bd4c521b78ec7ff61d5f35c5018879ac9313&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T18:00:44Z&quot;,&quot;3681681.3634303645&quot;,&quot;MATIC&quot;,&quot;0xc6fcf3a65c85eb322fe41c193f74bb37845e19be29364b126d3ea7a149f78dcc&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[0,1,&quot;2026-10-29T18:02:28Z&quot;,&quot;560324.0476617857&quot;,&quot;MATIC&quot;,&quot;0x4d1275abeace2a2af1a056afdf8db45b515098c96ec247486bbcec07d3f60841&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[1,5,&quot;2026-10-29T18:28:32Z&quot;,&quot;18613584.0&quot;,&quot;MATIC&quot;,&quot;0x2629289569ea8be042b6706ba0a9e0d76f069247bb115f973fcedc556e8a4f88&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[1,6,&quot;2026-10-29T18:30:41Z&quot;,&quot;4295442.0&quot;,&quot;MATIC&quot;,&quot;0x69e1c3f6c3cc1cacbc145ba0a7b475532d0856522b112add36d4eeb5d84fc0c5&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[7,8,&quot;2026-10-29T18:36:47Z&quot;,&quot;19.32956478&quot;,&quot;ETH&quot;,&quot;0x1b8ef2527a9e98ab4e567c5970fc0e1928a7c9e4e2c303ec05a47e459521a7ef&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[1,9,&quot;2026-10-29T18:38:16Z&quot;,&quot;5727258.44500568&quot;,&quot;MATIC&quot;,&quot;0xe8b8ee79a0e507b88027506f4098cbbcab6557272fb59becc42b53574b3e9f66&quot;,&quot;H&quot;,&quot;polygon&quot;,0],[10,9,&quot;2026-10-29T18:38:59Z&quot;,&quot;1.964518753680467797&quot;,&quot;ETH&quot;,&quot;0xa3e43bdc3c5573343e3a3e006e2bcae409097a1dab37eef3582ce1b894deddc5&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[10,9,&quot;2026-10-29T18:39:59Z&quot;,&quot;3.141678746637903528&quot;,&quot;ETH&quot;,&quot;0x4997ddaef0f969df799c08a7f413dbf789ba2c59a85a06191c3928c77abe4002&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[11,9,&quot;2026-10-29T18:41:23Z&quot;,&quot;3.148963076888056373&quot;,&quot;ETH&quot;,&quot;0x2940dd207f084406e9bc6cc185773455c27c2a75c59c8df03a854f24cfeca2a6&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[11,9,&quot;2026-10-29T18:41:59Z&quot;,&quot;3.155458318352071123&quot;,&quot;ETH&quot;,&quot;0xa4ea528e58d5c19564944de1e57082e106eb256505bd160ad03aa3fb01c69627&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[10,9,&quot;2026-10-29T18:42:47Z&quot;,&quot;3.150040471410893657&quot;,&quot;ETH&quot;,&quot;0x4a7796f32956f3120c716ce4c4ec744825ad0095789b8fe9d7d861a527bb170e&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[10,9,&quot;2026-10-29T18:43:35Z&quot;,&quot;3.148499688118019451&quot;,&quot;ETH&quot;,&quot;0x5de1d988fed532afcd2ef205c972dbb4ce4de751506e51f5ba5263580c908b61&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[10,9,&quot;2026-10-29T18:44:23Z&quot;,&quot;3.131553967142783456&quot;,&quot;ETH&quot;,&quot;0x87a4a7718f56d5caa4272be0b9e3c42781399d7cbb63d76e037a9c5c2737947f&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[10,9,&quot;2026-10-29T18:44:59Z&quot;,&quot;3.130362872582611726&quot;,&quot;ETH&quot;,&quot;0x706bf10136f76af75b4f076d6479d2e0903f2bd0136be0ab4ba7d8644c6db238&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[10,9,&quot;2026-10-29T18:45:47Z&quot;,&quot;3.13236493477389412&quot;,&quot;ETH&quot;,&quot;0xa4fbe80fc0091ee123c7722e6904cf82bb6b8f9d53d9a79a0827edabfb2dcafa&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[10,9,&quot;2026-10-29T18:46:35Z&quot;,&quot;3.133517389022663284&quot;,&quot;ETH&quot;,&quot;0xf5dd364cc04b83c45a58decc483c5e504ba120185324e5d2acd2e42b3f384221&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[10,9,&quot;2026-10-29T18:47:23Z&quot;,&quot;3.140099880829926413&quot;,&quot;ETH&quot;,&quot;0x0c249e80bec671d33a3f56db2780bfc237370fa3760275125692d9db0adb3a60&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[8,12,&quot;2026-10-29T18:47:47Z&quot;,&quot;19.32951879&quot;,&quot;ETH&quot;,&quot;0xb8c92ec0a1a71e348aee5d7a8acff6c051264b7080434b3e3f082f3325eda997&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[10,9,&quot;2026-10-29T18:48:11Z&quot;,&quot;3.135544008639085343&quot;,&quot;ETH&quot;,&quot;0xeb92f201c87b8e1c1d7bfcf252c166a36737b21b716a991d6b6a2988004a11b1&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[7,12,&quot;2026-10-29T18:48:11Z&quot;,&quot;85.08041818&quot;,&quot;ETH&quot;,&quot;0x99a8e8f7c681f777e7dcd76c07b273ea746bbb4ff5a3e7c206be85785f0db4f2&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[10,9,&quot;2026-10-29T18:50:23Z&quot;,&quot;3.13232257861448966&quot;,&quot;ETH&quot;,&quot;0xa6a72a74cb85fed411a3e07058a23ebe6119baacc18143d921eea4a67db024ad&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[10,9,&quot;2026-10-29T18:51:23Z&quot;,&quot;3.132580716026964558&quot;,&quot;ETH&quot;,&quot;0x9e96e841d073607f70e31b1226b6a7f7119ac3fdb4bb568f8e1861094d152877&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[10,9,&quot;2026-10-29T18:52:11Z&quot;,&quot;3.130702104358394651&quot;,&quot;ETH&quot;,&quot;0x09e83d66d7132250e10643cea25ece1f11b162e0635a9f154da136aa7bf8052d&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[10,9,&quot;2026-10-29T18:52:35Z&quot;,&quot;3.128492284202278776&quot;,&quot;ETH&quot;,&quot;0x56d9f0df1d64d203f49195d9f75c02e5857d5ed165c6491d51583c1b513696f9&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[10,9,&quot;2026-10-29T18:53:23Z&quot;,&quot;3.127519864376618514&quot;,&quot;ETH&quot;,&quot;0xeb4a8f7cef07fd17faac85f2fc2c099c423acf6841bc781a25a609d47421d12a&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[10,9,&quot;2026-10-29T18:53:47Z&quot;,&quot;3.129925925914935194&quot;,&quot;ETH&quot;,&quot;0x7ea0ee793ed5508d73655abb01e9cfd39425f475bdd9e3720c870a7f586c33c6&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[10,9,&quot;2026-10-29T18:56:11Z&quot;,&quot;3.140457377211787934&quot;,&quot;ETH&quot;,&quot;0xf34f91f59d10c44b3bf97972dc23f5267b8af75347c5e3eda30e2cf69fcc83bd&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[13,7,&quot;2026-10-29T19:31:23Z&quot;,&quot;547045.95185996&quot;,&quot;POL&quot;,&quot;0x744fdeed0629d9704f42817de0cbbe04626a0a8860892fa411daa440a054825f&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[7,14,&quot;2026-10-29T19:33:11Z&quot;,&quot;547045.95185996&quot;,&quot;POL&quot;,&quot;0x533c7e021e111e2fe4505b9e2b3d8ac959edf58ea9d1d3a297d68727a210ed7e&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[14,12,&quot;2026-10-29T19:35:35Z&quot;,&quot;21.686738689426539852&quot;,&quot;ETH&quot;,&quot;0x395f63aa9164393592f81315eae087df26cc53bdb98eb32772d7e8140d0f48c7&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[9,15,&quot;2026-10-29T20:02:23Z&quot;,&quot;0.1&quot;,&quot;ETH&quot;,&quot;0xf22655c135c2f44df2a76ffe3d891b7dd4ce0253bf7ce671f90adde04da3f002&quot;,&quot;H&quot;,&quot;ethereum&quot;,0],[16,7,&quot;2026-10-30T03:25:11Z&quot;,&quot;1548.447025&quot;,&quot;USDT&quot;,&quot;0xb7693fa1951570731d9f77451caafa013ff5c4af2ae4738f65b751144b59b0d6&quot;,&quot;H&quot;,&quot;ethereum&quot;,0]],&quot;groups&quot;:[],&quot;snap&quot;:{&quot;bal&quot;:&quot;freeze table of this build&quot;,&quot;balt&quot;:&quot;issuer freeze table of this build&quot;,&quot;tr&quot;:&quot;2026-10-30 03:25 UTC&quot;}}&lt;/script&gt;
+&lt;script&gt;
+(function(){
+&quot;use strict&quot;;
+const D=JSON.parse(document.getElementById(&quot;data&quot;).textContent);
+const SNAP=D.snap;
+const LEG=[&quot;TRANSFER&quot;];
+const RAILOUT=99;
+document.getElementById(&quot;snap&quot;).innerHTML=&quot;transfers to &lt;b&gt;&quot;+SNAP.tr+&quot;&lt;/b&gt;&quot;;
+
+/* ---------- model ---------- */
+const NODES=D.nodes, ROWS=D.rows, GROUPS=D.groups;
+const nodeOf=new Map();            // raw index -&gt; node
+const gOf=new Map();               // raw index -&gt; group (member)
+NODES.forEach((n,i)=&gt;{n.i=i;n.id=&quot;n&quot;+i;nodeOf.set(i,n);n.svc=(&quot;s&quot; in n);n.kind=n.svc?&quot;svc&quot;:(n.src?&quot;src&quot;:&quot;w&quot;);});
+GROUPS.forEach((g,gi)=&gt;{g.id=&quot;g&quot;+gi;g.gi=gi;g.open=false;g.m.forEach(m=&gt;gOf.set(m,g));});
+const lanesAll=D.lanes;
+function chainOfLane(l){return l}
+const EXPL={ethereum:{a:&quot;https://etherscan.io/address/&quot;,t:&quot;https://etherscan.io/tx/&quot;},
+ tron:{a:&quot;https://tronscan.org/#/address/&quot;,t:&quot;https://tronscan.org/#/transaction/&quot;},
+ bitcoin:{a:&quot;https://mempool.space/address/&quot;,t:&quot;https://mempool.space/tx/&quot;},
+ solana:{a:&quot;https://solscan.io/account/&quot;,t:&quot;https://solscan.io/tx/&quot;},
+ polygon:{a:&quot;https://polygonscan.com/address/&quot;,t:&quot;https://polygonscan.com/tx/&quot;},
+ bsc:{a:&quot;https://bscscan.com/address/&quot;,t:&quot;https://bscscan.com/tx/&quot;},
+ arbitrum:{a:&quot;https://arbiscan.io/address/&quot;,t:&quot;https://arbiscan.io/tx/&quot;},
+ optimism:{a:&quot;https://optimistic.etherscan.io/address/&quot;,t:&quot;https://optimistic.etherscan.io/tx/&quot;},
+ avalanche:{a:&quot;https://snowtrace.io/address/&quot;,t:&quot;https://snowtrace.io/tx/&quot;},
+ xrp:{a:&quot;https://xrpscan.com/account/&quot;,t:&quot;https://xrpscan.com/tx/&quot;}};
+const FA={ethereum:&quot;etherscan&quot;,tron:&quot;tronscan&quot;,bitcoin:&quot;mempool.space&quot;,solana:&quot;solscan&quot;,polygon:&quot;polygonscan&quot;,bsc:&quot;bscscan&quot;,arbitrum:&quot;arbiscan&quot;,optimism:&quot;optimistic etherscan&quot;,avalanche:&quot;snowtrace&quot;,xrp:&quot;xrpscan&quot;};
+function esc(s){return String(s).replace(/[&amp;&lt;&gt;&quot;]/g,c=&gt;({&quot;&amp;&quot;:&quot;&amp;amp;&quot;,&quot;&lt;&quot;:&quot;&amp;lt;&quot;,&quot;&gt;&quot;:&quot;&amp;gt;&quot;,&#x27;&quot;&#x27;:&quot;&amp;quot;&quot;}[c]))}
+function short(a){return a.slice(0,8)+&quot;…&quot;+a.slice(-4)}
+function fmt(v){
+  if(v&gt;=1e6)return (v/1e6).toFixed(2).replace(/\.?0+$/,&quot;&quot;)+&quot;M&quot;;
+  if(v&gt;=1000)return v.toLocaleString(&quot;en-US&quot;,{maximumFractionDigits:2});
+  if(v&gt;=1)return v.toLocaleString(&quot;en-US&quot;,{maximumFractionDigits:2});
+  return v.toLocaleString(&quot;en-US&quot;,{maximumFractionDigits:6});
+}
+function fmtFull(v){return v.toLocaleString(&quot;en-US&quot;,{maximumFractionDigits:8})}
+function md(t){return t.slice(5,7)+&quot;/&quot;+t.slice(8,10)+&quot; &quot;+t.slice(11,16)}
+function txLink(chain,h){
+  const e=EXPL[chain];
+  return e?&#x27;&lt;a href=&quot;&#x27;+e.t+esc(h)+&#x27;&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&#x27;+esc(h)+&#x27;&lt;/a&gt;&#x27;:esc(h);
+}
+function addrLink(n){
+  if(n.svc)return &quot;&quot;;
+  const e=EXPL[n.l];
+  return e?&#x27;&lt;a href=&quot;&#x27;+e.a+esc(n.a)+&#x27;&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;open on &#x27;+FA[n.l]+&#x27;&lt;/a&gt;&#x27;:&quot;&quot;;
+}
+function heldText(h){return &quot;frozen by &quot;+h.iss+(h.asset?&quot; (&quot;+h.asset+&quot;)&quot;:&quot;&quot;)+(h.t?&quot;, &quot;+h.t.replace(/^(\d+ \w+) /,&quot;$1 2026 &quot;)+&quot; UTC&quot;:&quot;&quot;)}
+function heldSub(h){return &quot;FROZEN&quot;+(h.asset?&quot; &quot;+h.asset:&quot;&quot;)+(h.t?&quot; · &quot;+h.t+&quot; UTC&quot;:&quot;&quot;)}
+const sumH=(a,k)=&gt;a.reduce((s,h)=&gt;s+(k(h)||0),0);
+
+/* ---------- visible graph for the current expand state ---------- */
+let V=null; // {nodes:[], edges:[], byId:Map}
+function visId(i){const g=gOf.get(i);return g&amp;&amp;!g.open?g.id:&quot;n&quot;+i}
+function build(){
+  const nodes=[];const byId=new Map();
+  NODES.forEach(n=&gt;{const g=gOf.get(n.i);if(g&amp;&amp;!g.open)return;nodes.push(n);byId.set(n.id,n)});
+  GROUPS.forEach(g=&gt;{
+    if(g.open)return;
+    const first=NODES[g.m[0]];
+    const gn={id:g.id,group:g,kind:&quot;grp&quot;,l:g.ch,c:first.c,i:-1,h:g.h?{fz:g.fz}:null};
+    nodes.push(gn);byId.set(g.id,gn);
+  });
+  const em=new Map();
+  ROWS.forEach((r,ri)=&gt;{
+    const f=visId(r[0]),t=visId(r[1]);const k=f+&quot;&gt;&quot;+t;
+    let e=em.get(k);
+    if(!e){e={f,t,rows:[],sums:{},conf:&quot;H&quot;,t0:r[2],t1:r[2],chains:new Set()};em.set(k,e)}
+    e.rows.push(ri);e.sums[r[4]]=(e.sums[r[4]]||0)+parseFloat(r[3]);
+    if(r[6]!==&quot;H&quot;)e.conf=r[6]===&quot;L&quot;?&quot;L&quot;:(e.conf===&quot;L&quot;?&quot;L&quot;:&quot;M&quot;);
+    if(r[2]&lt;e.t0)e.t0=r[2];if(r[2]&gt;e.t1)e.t1=r[2];
+    e.chains.add(r[7]);
+  });
+  const edges=[...em.values()];
+  edges.forEach(e=&gt;{
+    const as=Object.keys(e.sums).sort((a,b)=&gt;e.sums[b]-e.sums[a]);
+    e.asset=as[0];e.amt=e.sums[as[0]];e.more=as.length-1;
+  });
+  // weight: percentile of amount inside its asset class
+  const cls=a=&gt;/^(USDT|USDC|USDC\.e|DAI|USDS|USDT0)$/.test(a)?&quot;usd&quot;:a;
+  const byc=new Map();edges.forEach(e=&gt;{const c=cls(e.asset);(byc.get(c)||byc.set(c,[]).get(c)).push(e)});
+  byc.forEach(list=&gt;{list.sort((a,b)=&gt;a.amt-b.amt);list.forEach((e,i)=&gt;{e.w=1+3.5*(list.length&gt;1?i/(list.length-1):0.5)})});
+  const sv=n=&gt;n.svc?n.a:&quot;&quot;;
+  edges.forEach(e=&gt;{
+    const a=byId.get(e.f),b=byId.get(e.t);
+    e.rail=a.svc?a.a:(b.svc?b.a:&quot;&quot;);
+    e.railOut=e.rows.every(ri=&gt;ROWS[ri][8]===RAILOUT);
+  });
+  V={nodes,edges,byId};
+}
+
+/* ---------- layout ---------- */
+const W=240,H=50,GAP=230,SG=150,RH=64,LH=46,X0=110,R=24; /* R = rows per sub-column; a lane cell with more wallets wraps into sub-columns (uncalibrated) */
+let LAYOUT=null;
+function layout(){
+  const lanes=lanesAll.filter(l=&gt;V.nodes.some(n=&gt;n.l===l.id));
+  const cells=new Map(); // lane|col -&gt; nodes
+  V.nodes.forEach(n=&gt;{const k=n.l+&quot;|&quot;+n.c;(cells.get(k)||cells.set(k,[]).get(k)).push(n)});
+  let y=20;const laneY={},lanesOut=[];
+  lanes.forEach(l=&gt;{
+    let rows=1;cells.forEach((v,k)=&gt;{if(k.startsWith(l.id+&quot;|&quot;))rows=Math.max(rows,Math.min(R,v.length))});
+    laneY[l.id]=y+LH;lanesOut.push({id:l.id,label:l.label,y:y,h:LH+rows*RH+16});y+=LH+rows*RH+16;
+  });
+  const maxc=V.nodes.reduce((m,n)=&gt;Math.max(m,n.c),0);
+  const adjIn=new Map(),adjOut=new Map();
+  V.nodes.forEach(n=&gt;{adjIn.set(n.id,[]);adjOut.set(n.id,[])});
+  V.edges.forEach(e=&gt;{adjOut.get(e.f).push(e.t);adjIn.get(e.t).push(e.f)});
+  // initial order: lane, col, time of first edge
+  const first=new Map();
+  V.edges.forEach(e=&gt;{[e.f,e.t].forEach(id=&gt;{if(!first.has(id)||e.t0&lt;first.get(id))first.set(id,e.t0)})});
+  const ord=new Map(); // id -&gt; y centre
+  function place(list,l){list.forEach((n,i)=&gt;{n.row=i%R;n.sub=Math.floor(i/R);n.y=laneY[l]+n.row*RH;ord.set(n.id,n.y+n.sub*0.01)})}
+  cells.forEach((list,k)=&gt;{list.sort((a,b)=&gt;(first.get(a.id)||&quot;&quot;).localeCompare(first.get(b.id)||&quot;&quot;)||a.id.localeCompare(b.id));place(list,k.split(&quot;|&quot;)[0])});
+  function sweep(dir){
+    const cs=[];for(let c=0;c&lt;=maxc;c++)cs.push(c);if(dir&lt;0)cs.reverse();
+    cs.forEach(c=&gt;{
+      lanes.forEach(l=&gt;{
+        const list=cells.get(l.id+&quot;|&quot;+c);if(!list)return;
+        const key=new Map();
+        list.forEach(n=&gt;{
+          const nb=(dir&gt;0?adjIn:adjOut).get(n.id).concat([]);
+          const ys=nb.map(id=&gt;ord.get(id)).filter(v=&gt;v!==undefined);
+          key.set(n.id,ys.length?ys.reduce((a,b)=&gt;a+b,0)/ys.length:ord.get(n.id));
+        });
+        list.sort((a,b)=&gt;key.get(a.id)-key.get(b.id)||a.id.localeCompare(b.id));
+        place(list,l.id);
+      });
+    });
+  }
+  sweep(1);sweep(-1);sweep(1);sweep(-1);sweep(1);
+  const nsub=[];for(let c=0;c&lt;=maxc;c++)nsub.push(1);
+  cells.forEach((v,k)=&gt;{const c=+k.split(&quot;|&quot;)[1];nsub[c]=Math.max(nsub[c],Math.ceil(v.length/R))});
+  const colX=[];let cx=X0;for(let c=0;c&lt;=maxc;c++){colX.push(cx);cx+=nsub[c]*(W+SG)-SG+GAP}
+  V.nodes.forEach(n=&gt;{n.x=colX[n.c]+n.sub*(W+SG)});
+  LAYOUT={lanes:lanesOut,TOTW:cx-GAP+20,TOTH:y+10,maxc,colX};
+}
+
+/* ---------- drawing ---------- */
+const NS=&quot;http://www.w3.org/2000/svg&quot;,vp=document.getElementById(&quot;vp&quot;),svg=document.getElementById(&quot;svg&quot;),map=document.getElementById(&quot;map&quot;);
+function el(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||vp).appendChild(e);return e;}
+let sel=null; // selected visible node id
+function nodeTitle(n){return n.kind===&quot;grp&quot;?n.group.m.length+&quot; × &quot;+fmt(n.group.amt)+&quot; &quot;+n.group.asset:(n.svc?n.a:short(n.a))}
+function nodeSub(n){
+  if(n.kind===&quot;grp&quot;){return (n.h?(n.h.fz?&quot;FROZEN &quot;+NODES[n.group.m[0]].h.t+&quot; UTC&quot;:&quot;HELD&quot;):&quot;leaf wallets&quot;)+&quot; · click to expand&quot;}
+  if(n.h)return heldSub(n.h);
+  if(n.svc)return n.s;
+  const rin={},rout={};
+  ROWS.forEach(r=&gt;{});
+  return n._sub||&quot;&quot;;
+}
+function prepSubs(){
+  const inn=new Map(),out=new Map();
+  ROWS.forEach(r=&gt;{
+    const a=NODES[r[0]],b=NODES[r[1]],amt=parseFloat(r[3]);
+    (inn.get(b.i)||inn.set(b.i,{}).get(b.i))[r[4]]=((inn.get(b.i)||{})[r[4]]||0)+amt;
+    (out.get(a.i)||out.set(a.i,{}).get(a.i))[r[4]]=((out.get(a.i)||{})[r[4]]||0)+amt;
+  });
+  NODES.forEach(n=&gt;{
+    n.rin=inn.get(n.i)||{};n.rout=out.get(n.i)||{};
+    const top=o=&gt;{const k=Object.keys(o).sort((a,b)=&gt;o[b]-o[a]);return k.length?fmt(o[k[0]])+&quot; &quot;+k[0]+(k.length&gt;1?&quot; +&quot;+(k.length-1):&quot;&quot;):&quot;&quot;};
+    n._sub=n.src?(Object.keys(n.rout).length?&quot;origin wallet · out &quot;+top(n.rout):&quot;origin wallet · no edges traced&quot;):&quot;in &quot;+top(n.rin);
+  });
+}
+const gE=[],gN=[];
+function labelFor(e){
+  const a=V.byId.get(e.f),b=V.byId.get(e.t);
+  const n=e.rows.length;
+  let l1=(e.rail?e.rail+&quot; · &quot;:&quot;&quot;)+fmt(e.amt)+&quot; &quot;+e.asset+(e.more?&quot; +&quot;+e.more:&quot;&quot;)+(n&gt;1?&quot; ×&quot;+n:&quot;&quot;);
+  let l2=(e.railOut?&quot;~&quot;:&quot;&quot;)+md(e.t0)+(e.t1!==e.t0?&quot; – &quot;+md(e.t1):&quot;&quot;)+&quot; UTC &quot;+e.conf;
+  return [l1,l2];
+}
+function bez(p0,p1,p2,p3,t){const u=1-t;return u*u*u*p0+3*u*u*t*p1+3*u*t*t*p2+t*t*t*p3}
+let eG,nG,lG;
+function draw(){
+  while(vp.firstChild)vp.removeChild(vp.firstChild);
+  const {lanes,TOTW,TOTH}=LAYOUT;
+  el(&quot;rect&quot;,{x:0,y:0,width:TOTW,height:TOTH,fill:&quot;url(#gr)&quot;});
+  lanes.forEach(l=&gt;{
+    el(&quot;line&quot;,{x1:0,y1:l.y,x2:TOTW,y2:l.y,stroke:&quot;var(--rule2)&quot;,&quot;stroke-width&quot;:1});
+    el(&quot;text&quot;,{x:12,y:l.y+26,fill:&quot;var(--hi)&quot;,&quot;font-family&quot;:&quot;var(--mono)&quot;,&quot;font-size&quot;:14,&quot;font-weight&quot;:600}).textContent=l.label;
+  });
+  for(let c=0;c&lt;=LAYOUT.maxc;c++)el(&quot;text&quot;,{x:LAYOUT.colX[c],y:12,fill:&quot;var(--dim)&quot;,&quot;font-family&quot;:&quot;var(--mono)&quot;,&quot;font-size&quot;:11,&quot;letter-spacing&quot;:&quot;.12em&quot;}).textContent=c===0?&quot;SOURCE&quot;:&quot;HOP &quot;+c;
+  eG=el(&quot;g&quot;,{});nG=el(&quot;g&quot;,{});lG=el(&quot;g&quot;,{});
+  // rank per target to spread labels along the curve
+  const inRank=new Map(),inCnt=new Map();
+  V.edges.forEach(e=&gt;inCnt.set(e.t,(inCnt.get(e.t)||0)+1));
+  V.edges.slice().sort((a,b)=&gt;V.byId.get(a.f).y-V.byId.get(b.f).y).forEach(e=&gt;{const r=inRank.get(e.t)||0;e.rank=r;inRank.set(e.t,r+1)});
+  V.edges.forEach(e=&gt;{
+    const a=V.byId.get(e.f),b=V.byId.get(e.t);
+    const x1=a.x+W,y1=a.y+H/2,x2=b.x-6,y2=b.y+H/2,mx=(x1+x2)/2;
+    const w=e.w;
+    e.el=el(&quot;path&quot;,{d:&quot;M&quot;+x1+&quot;,&quot;+y1+&quot; C&quot;+mx+&quot;,&quot;+y1+&quot; &quot;+mx+&quot;,&quot;+y2+&quot; &quot;+x2+&quot;,&quot;+y2,fill:&quot;none&quot;,stroke:&quot;var(--ink)&quot;,&quot;stroke-opacity&quot;:.75,
+      &quot;stroke-width&quot;:e.conf===&quot;L&quot;?Math.max(w,2):w,&quot;stroke-dasharray&quot;:e.conf===&quot;M&quot;?&quot;7 4&quot;:e.conf===&quot;L&quot;?&quot;1.5 4&quot;:&quot;none&quot;,&quot;stroke-linecap&quot;:e.conf===&quot;L&quot;?&quot;round&quot;:&quot;butt&quot;},eG);
+    el(&quot;path&quot;,{d:&quot;M&quot;+(x2-1)+&quot;,&quot;+(y2-4)+&quot; L&quot;+(x2+6)+&quot;,&quot;+y2+&quot; L&quot;+(x2-1)+&quot;,&quot;+(y2+4)+&quot;Z&quot;,fill:&quot;var(--ink)&quot;},eG);
+    const [l1,l2]=labelFor(e);
+    const n=inCnt.get(e.t),t=n&gt;1?0.52+0.32*(e.rank/(n-1)):0.7;
+    const cx=bez(x1,mx,mx,x2,t),cy=bez(y1,y1,y2,y2,t);
+    const wd=Math.max(l1.length,l2.length)*6.5+14;
+    const g=el(&quot;g&quot;,{class:&quot;elabel&quot;},lG);
+    el(&quot;rect&quot;,{x:cx-wd/2,y:cy-14,width:wd,height:28,fill:&quot;var(--bg)&quot;,&quot;fill-opacity&quot;:.92},g);
+    el(&quot;text&quot;,{x:cx-wd/2+6,y:cy-2,fill:&quot;var(--hi)&quot;,&quot;font-family&quot;:&quot;var(--mono)&quot;,&quot;font-size&quot;:11},g).textContent=l1;
+    el(&quot;text&quot;,{x:cx-wd/2+6,y:cy+10,fill:&quot;var(--dim)&quot;,&quot;font-family&quot;:&quot;var(--mono)&quot;,&quot;font-size&quot;:10.5},g).textContent=l2;
+    e.lbl=g;
+  });
+  V.nodes.forEach(n=&gt;{
+    const held=!!n.h;
+    const g=el(&quot;g&quot;,{tabindex:0,role:&quot;button&quot;,&quot;aria-label&quot;:n.kind===&quot;grp&quot;?nodeTitle(n)+&quot;, click to expand&quot;:(n.svc?n.a:n.a),style:&quot;cursor:pointer&quot;},nG);
+    if(n.kind===&quot;grp&quot;){
+      el(&quot;rect&quot;,{x:n.x+6,y:n.y-5,width:W,height:H,fill:&quot;var(--bg)&quot;,stroke:&quot;var(--rule2)&quot;,&quot;stroke-width&quot;:1},g);
+      el(&quot;rect&quot;,{x:n.x+3,y:n.y-2.5,width:W,height:H,fill:&quot;var(--bg)&quot;,stroke:&quot;var(--rule2)&quot;,&quot;stroke-width&quot;:1},g);
+    }
+    n.box=el(&quot;rect&quot;,{x:n.x,y:n.y,width:W,height:H,fill:held?&quot;var(--hi)&quot;:&quot;var(--bg)&quot;,stroke:held?&quot;var(--hi)&quot;:&quot;var(--rule2)&quot;,&quot;stroke-width&quot;:1,&quot;stroke-dasharray&quot;:(n.kind===&quot;src&quot;||n.dash)?&quot;4 3&quot;:&quot;none&quot;},g);
+    el(&quot;text&quot;,{x:n.x+12,y:n.y+21,fill:held?&quot;var(--inv)&quot;:&quot;var(--hi)&quot;,&quot;font-family&quot;:&quot;var(--disp)&quot;,&quot;font-size&quot;:13,&quot;font-weight&quot;:700},g).textContent=nodeTitle(n);
+    el(&quot;text&quot;,{x:n.x+12,y:n.y+39,fill:held?&quot;var(--inv)&quot;:&quot;var(--dim)&quot;,&quot;font-family&quot;:&quot;var(--mono)&quot;,&quot;font-size&quot;:11.5},g).textContent=nodeSub(n);
+    g.addEventListener(&quot;click&quot;,ev=&gt;{ev.stopPropagation();pick(n)});
+    g.addEventListener(&quot;keydown&quot;,ev=&gt;{if(ev.key===&quot;Enter&quot;||ev.key===&quot; &quot;){ev.preventDefault();pick(n)}});
+    n.g=g;
+  });
+  applySel();
+}
+function pick(n){
+  if(n.kind===&quot;grp&quot;){n.group.open=true;rebuild();const f=V.byId.get(&quot;n&quot;+n.group.m[0]);select(f,true);return}
+  select(n);
+}
+function rebuild(keep){build();layout();draw();apply()}
+function applySel(){
+  const n=sel?V.byId.get(sel):null;
+  V.nodes.forEach(m=&gt;{const on=m===n;m.box.setAttribute(&quot;stroke-width&quot;,on?2.5:1);m.box.setAttribute(&quot;stroke&quot;,on?&quot;var(--hi)&quot;:(m.h?&quot;var(--hi)&quot;:&quot;var(--rule2)&quot;))});
+  V.edges.forEach(e=&gt;{const on=!n||e.f===n.id||e.t===n.id;e.el.setAttribute(&quot;stroke-opacity&quot;,on?(n?.95:.75):.15);e.lbl.setAttribute(&quot;opacity&quot;,on?1:.2);e.lbl.classList.toggle(&quot;on&quot;,!!n&amp;&amp;on)});
+}
+
+/* ---------- pan / zoom ---------- */
+let k=1,tx=0,ty=0;
+function apply(){vp.setAttribute(&quot;transform&quot;,&quot;translate(&quot;+tx+&quot;,&quot;+ty+&quot;) scale(&quot;+k+&quot;)&quot;);svg.classList.toggle(&quot;lod&quot;,k&lt;0.55)}
+function fit(){const r=map.getBoundingClientRect();k=Math.min(r.width/LAYOUT.TOTW,r.height/LAYOUT.TOTH)*0.98;tx=(r.width-LAYOUT.TOTW*k)/2;ty=4;apply();}
+function zoomAt(f,cx,cy){const nk=Math.max(.05,Math.min(4,k*f));tx=cx-(cx-tx)*nk/k;ty=cy-(cy-ty)*nk/k;k=nk;apply();}
+map.addEventListener(&quot;wheel&quot;,e=&gt;{e.preventDefault();const r=map.getBoundingClientRect();zoomAt(e.deltaY&lt;0?1.12:1/1.12,e.clientX-r.left,e.clientY-r.top)},{passive:false});
+const ptrs=new Map();let drag=null,pinch=null;
+map.addEventListener(&quot;pointerdown&quot;,e=&gt;{
+  if(e.target.closest(&quot;g[role]&quot;))return;
+  ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(ptrs.size===1){drag={x:e.clientX,y:e.clientY,tx,ty,moved:false};map.classList.add(&quot;drag&quot;)}
+  else if(ptrs.size===2){const p=[...ptrs.values()];pinch={d:Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y)};drag=null}
+  try{map.setPointerCapture(e.pointerId)}catch(_){}
+});
+map.addEventListener(&quot;pointermove&quot;,e=&gt;{
+  if(!ptrs.has(e.pointerId))return;ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pinch&amp;&amp;ptrs.size===2){const p=[...ptrs.values()],d=Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y),r=map.getBoundingClientRect();
+    zoomAt(d/pinch.d,(p[0].x+p[1].x)/2-r.left,(p[0].y+p[1].y)/2-r.top);pinch.d=d;return}
+  if(!drag)return;if(Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y)&gt;4)drag.moved=true;
+  tx=drag.tx+e.clientX-drag.x;ty=drag.ty+e.clientY-drag.y;apply()});
+function endp(e){ptrs.delete(e.pointerId);if(ptrs.size&lt;2)pinch=null;if(ptrs.size===0){map.classList.remove(&quot;drag&quot;);setTimeout(()=&gt;{drag=null},0)}}
+map.addEventListener(&quot;pointerup&quot;,endp);map.addEventListener(&quot;pointercancel&quot;,endp);
+const mid=()=&gt;{const r=map.getBoundingClientRect();return[r.width/2,r.height/2]};
+document.getElementById(&quot;zin&quot;).onclick=()=&gt;zoomAt(1.25,...mid());
+document.getElementById(&quot;zout&quot;).onclick=()=&gt;zoomAt(1/1.25,...mid());
+document.getElementById(&quot;fit&quot;).onclick=fit;
+map.addEventListener(&quot;keydown&quot;,e=&gt;{
+  if(e.target!==map)return;
+  const s=60;
+  if(e.key===&quot;ArrowLeft&quot;)tx+=s;else if(e.key===&quot;ArrowRight&quot;)tx-=s;else if(e.key===&quot;ArrowUp&quot;)ty+=s;else if(e.key===&quot;ArrowDown&quot;)ty-=s;
+  else if(e.key===&quot;+&quot;||e.key===&quot;=&quot;)zoomAt(1.25,...mid());else if(e.key===&quot;-&quot;)zoomAt(1/1.25,...mid());else if(e.key===&quot;0&quot;)fit();
+  else if(e.key===&quot;Escape&quot;)select(null);else return;
+  e.preventDefault();apply();
+});
+document.addEventListener(&quot;keydown&quot;,e=&gt;{if(e.key===&quot;Escape&quot;&amp;&amp;sel&amp;&amp;e.target.tagName!==&quot;INPUT&quot;)select(null)});
+
+/* ---------- drawer ---------- */
+const dr=document.getElementById(&quot;dr&quot;);
+function select(n,center){
+  sel=n?n.id:null;applySel();
+  if(center&amp;&amp;n){k=Math.max(k,0.9);const r=map.getBoundingClientRect();tx=r.width/2-(n.x+W/2)*k;ty=r.height/2-(n.y+H/2)*k;apply()}
+  if(!n){overview();return}
+  if(n.kind===&quot;grp&quot;){groupDrawer(n);return}
+  nodeDrawer(n);
+}
+function sumStr(o){const ks=Object.keys(o).sort((a,b)=&gt;o[b]-o[a]);return ks.length?ks.map(a=&gt;fmtFull(o[a])+&quot; &quot;+a).join(&quot;&lt;br&gt;&quot;):&quot;none&quot;}
+function edgeBlocks(list,dir){
+  // list: visible edges; dir &quot;from&quot;/&quot;to&quot;: other end shown. One &lt;details&gt; per other end with every row.
+  return list.map(e=&gt;{
+    const o=V.byId.get(dir===&quot;from&quot;?e.f:e.t);
+    const lab=o.kind===&quot;grp&quot;?nodeTitle(o):(o.svc?o.a:short(o.a));
+    const rows=e.rows.map(ri=&gt;ROWS[ri]).sort((a,b)=&gt;a[2].localeCompare(b[2]));
+    const sums=Object.keys(e.sums).map(a=&gt;fmtFull(e.sums[a])+&quot; &quot;+a).join(&quot; + &quot;);
+    const dist=e.rows.length&gt;1?&quot; · &quot;+e.rows.length+&quot; tx&quot;:&quot;&quot;;
+    return &#x27;&lt;details class=&quot;ed&quot;&#x27;+(e.rows.length&lt;=2?&quot; open&quot;:&quot;&quot;)+&#x27;&gt;&lt;summary&gt;&#x27;+dir+&#x27; &lt;button class=&quot;jump&quot; data-j=&quot;&#x27;+o.id+&#x27;&quot;&gt;&#x27;+esc(lab)+&#x27;&lt;/button&gt;&lt;br&gt;&lt;span class=&quot;t&quot;&gt;&#x27;+esc(sums)+dist+&quot; · &quot;+md(e.t0)+(e.t1!==e.t0?&quot; – &quot;+md(e.t1):&quot;&quot;)+&quot; UTC · &quot;+e.conf+&#x27;&lt;/span&gt;&lt;/summary&gt;&#x27;+
+      rows.map(r=&gt;{
+        const m=NODES[dir===&quot;from&quot;?r[0]:r[1]];
+        const who=o.kind===&quot;grp&quot;?&#x27;&lt;br&gt;&#x27;+(m.svc?esc(m.a):&#x27;&lt;span class=&quot;t&quot;&gt;wallet&lt;/span&gt; &#x27;+esc(m.a)):&quot;&quot;;
+        return &#x27;&lt;span class=&quot;tx&quot;&gt;&#x27;+(r[8]===RAILOUT?&quot;~&quot;:&quot;&quot;)+r[2]+&quot; UTC · &quot;+fmtFull(parseFloat(r[3]))+&quot; &quot;+esc(r[4])+&quot; · &quot;+r[6]+who+&quot;&lt;br&gt;tx &quot;+txLink(r[7],r[5])+(r[9]?&#x27;&lt;br&gt;&lt;span class=&quot;t&quot;&gt;&#x27;+esc(r[9])+&quot;&lt;/span&gt;&quot;:&quot;&quot;)+&quot;&lt;/span&gt;&quot;;
+      }).join(&quot;&quot;)+&quot;&lt;/details&gt;&quot;;
+  }).join(&quot;&quot;);
+}
+function clearBtn(){const b=document.getElementById(&quot;clr&quot;);if(b)b.onclick=()=&gt;select(null)}
+function bindJump(){dr.querySelectorAll(&quot;button.jump&quot;).forEach(b=&gt;b.onclick=()=&gt;{
+  const n=V.byId.get(b.dataset.j);if(n){pick(n);if(n.kind!==&quot;grp&quot;){const m=V.byId.get(b.dataset.j);if(m)select(m,true)}}
+})}
+function nodeDrawer(n){
+  const ins=V.edges.filter(e=&gt;e.t===n.id),outs=V.edges.filter(e=&gt;e.f===n.id);
+  const g=gOf.get(n.i);
+  const lane=(lanesAll.find(l=&gt;l.id===n.l)||{}).label||n.l;
+  const role=n.svc?n.s:(n.src?&quot;origin wallet&quot;:&quot;hop &quot;+n.c);
+  dr.innerHTML=&#x27;&lt;h2&gt;&#x27;+esc(lane.replace(&quot;# &quot;,&quot;&quot;).toUpperCase())+&quot; · &quot;+esc(role.toUpperCase())+&#x27;&lt;/h2&gt;&lt;div class=&quot;addr&quot;&gt;&#x27;+esc(n.a)+&#x27;&lt;/div&gt;&#x27;+
+    (n.svc?&quot;&quot;:&#x27;&lt;div&gt;&#x27;+addrLink(n)+&#x27;&lt;/div&gt;&#x27;)+
+    (n.h?&#x27;&lt;div style=&quot;margin-top:8px&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&#x27;+(n.h.fz?&quot;FROZEN&quot;:&quot;HELD&quot;)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;:&quot;&quot;)+
+    &#x27;&lt;div style=&quot;margin-top:10px&quot;&gt;&#x27;+
+    (n.r?&#x27;&lt;div class=&quot;kv&quot;&gt;&lt;span&gt;role&lt;/span&gt;&lt;span&gt;&#x27;+esc(n.r)+&#x27;&#x27;+(n.cf===&quot;H&quot;?&quot; · High&quot;:n.cf===&quot;M&quot;?&quot; · Medium&quot;:n.cf===&quot;L&quot;?&quot; · Low&quot;:&quot;&quot;)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;:&quot;&quot;)+
+    &#x27;&lt;div class=&quot;kv&quot;&gt;&lt;span&gt;received&lt;/span&gt;&lt;span&gt;&#x27;+sumStr(n.rin)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;kv&quot;&gt;&lt;span&gt;sent&lt;/span&gt;&lt;span&gt;&#x27;+sumStr(n.rout)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;kv&quot;&gt;&lt;span&gt;edges in / out&lt;/span&gt;&lt;span&gt;&#x27;+ins.length+&#x27; / &#x27;+outs.length+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+    (n.h?&#x27;&lt;div class=&quot;kv&quot;&gt;&lt;span&gt;state&lt;/span&gt;&lt;span&gt;&#x27;+esc(heldText(n.h))+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;:&quot;&quot;)+&#x27;&lt;/div&gt;&#x27;+
+    (ins.length?&#x27;&lt;div class=&quot;sec&quot;&gt;RECEIVED FROM&lt;/div&gt;&#x27;+edgeBlocks(ins.sort((a,b)=&gt;a.t0.localeCompare(b.t0)),&quot;from&quot;):&quot;&quot;)+
+    (outs.length?&#x27;&lt;div class=&quot;sec&quot;&gt;SENT TO&lt;/div&gt;&#x27;+edgeBlocks(outs.sort((a,b)=&gt;a.t0.localeCompare(b.t0)),&quot;to&quot;):&quot;&quot;)+
+    (g?&#x27;&lt;p&gt;This wallet is one of &#x27;+g.m.length+&#x27; × &#x27;+fmt(g.amt)+&#x27; &#x27;+esc(g.asset)+&#x27; leaf wallets of one sender.&lt;/p&gt;&lt;button id=&quot;col&quot; style=&quot;margin-right:6px&quot;&gt;collapse group&lt;/button&gt;&#x27;:&quot;&quot;)+
+    &#x27;&lt;button id=&quot;clr&quot; style=&quot;margin-top:6px&quot;&gt;clear selection&lt;/button&gt;&#x27;;
+  clearBtn();
+  const c=document.getElementById(&quot;col&quot;);if(c)c.onclick=()=&gt;{g.open=false;rebuild();select(V.byId.get(g.id),true)};
+  bindJump();
+}
+function groupDrawer(n){
+  const g=n.group,ins=V.edges.filter(e=&gt;e.t===n.id);
+  const ms=g.m.map(i=&gt;NODES[i]);
+  const hz=g.h?ms[0].h:null;
+  dr.innerHTML=&#x27;&lt;h2&gt;GROUP · &#x27;+g.m.length+&#x27; LEAF WALLETS&lt;/h2&gt;&lt;div class=&quot;addr&quot;&gt;&#x27;+g.m.length+&#x27; × &#x27;+fmt(g.amt)+&#x27; &#x27;+esc(g.asset)+&#x27;&lt;/div&gt;&#x27;+
+    (hz?&#x27;&lt;div style=&quot;margin-top:8px&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&#x27;+(hz.fz?&quot;FROZEN&quot;:&quot;HELD&quot;)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;:&quot;&quot;)+
+    &#x27;&lt;div style=&quot;margin-top:10px&quot;&gt;&lt;div class=&quot;kv&quot;&gt;&lt;span&gt;wallets&lt;/span&gt;&lt;span&gt;&#x27;+g.m.length+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;kv&quot;&gt;&lt;span&gt;each received&lt;/span&gt;&lt;span&gt;&#x27;+fmtFull(g.amt)+&#x27; &#x27;+esc(g.asset)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+    (hz?&#x27;&lt;div class=&quot;kv&quot;&gt;&lt;span&gt;state&lt;/span&gt;&lt;span&gt;&#x27;+esc(hz.fz?&quot;frozen by the issuer&quot;:&quot;held&quot;)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;:&quot;&quot;)+&#x27;&lt;/div&gt;&#x27;+
+    &#x27;&lt;div class=&quot;sec&quot;&gt;RECEIVED FROM&lt;/div&gt;&#x27;+edgeBlocks(ins,&quot;from&quot;)+
+    &#x27;&lt;div class=&quot;sec&quot;&gt;WALLETS&lt;/div&gt;&#x27;+ms.map(m=&gt;&#x27;&lt;div class=&quot;ed&quot;&gt;&#x27;+esc(m.a)+&#x27;&lt;br&gt;&lt;span class=&quot;t&quot;&gt;&#x27;+addrLink(m).replace(&quot;open on &quot;,&quot;&quot;)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;).join(&quot;&quot;)+
+    &#x27;&lt;button id=&quot;exp&quot; style=&quot;margin-top:8px&quot;&gt;expand group&lt;/button&gt; &lt;button id=&quot;clr&quot; style=&quot;margin-top:8px&quot;&gt;clear selection&lt;/button&gt;&#x27;;
+  document.getElementById(&quot;exp&quot;).onclick=()=&gt;pick(n);
+  clearBtn();
+  bindJump();
+}
+function overview(){
+  const wal=NODES.filter(n=&gt;!n.svc),svc=NODES.filter(n=&gt;n.svc);
+  const hs=wal.filter(n=&gt;n.h),fz=hs.filter(n=&gt;n.h.fz),hd=hs.filter(n=&gt;!n.h.fz);
+  const num=s=&gt;parseFloat(s.replace(/,/g,&quot;&quot;));
+  const byL={};wal.forEach(n=&gt;byL[n.l]=(byL[n.l]||0)+1);
+  const ch=lanesAll.filter(l=&gt;l.id!==&quot;services&quot;).map(l=&gt;l.id+&quot; &quot;+(byL[l.id]||0)).join(&quot;, &quot;);
+  const svcRows={};ROWS.forEach(r=&gt;{[NODES[r[0]],NODES[r[1]]].forEach(n=&gt;{if(n.svc)svcRows[n.a]=(svcRows[n.a]||0)+1})});
+  const srcN=NODES.filter(n=&gt;n.src&amp;&amp;n.rout&amp;&amp;Object.keys(n.rout).length).length;
+  const gw=GROUPS.reduce((s,g)=&gt;s+g.m.length,0);
+  dr.innerHTML=&#x27;&lt;h2&gt;SUMMARY&lt;/h2&gt;&#x27;+
+  &#x27;&lt;div class=&quot;kv&quot;&gt;&lt;span&gt;wallets&lt;/span&gt;&lt;span&gt;&#x27;+wal.length+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;kv&quot;&gt;&lt;span&gt;transfers (tx rows)&lt;/span&gt;&lt;span&gt;&#x27;+ROWS.length+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;kv&quot;&gt;&lt;span&gt;edges drawn now&lt;/span&gt;&lt;span&gt;&#x27;+V.edges.length+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;div class=&quot;kv&quot;&gt;&lt;span&gt;origin wallets with outflow&lt;/span&gt;&lt;span&gt;&#x27;+srcN+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+
+  &#x27;&lt;p&gt;Click any box to isolate its transfers. Every line is a signed on-chain transfer. Columns are hops from the victim wallets; lanes are chains. Wallets marked recipient, not listed, received funds and are not named in the public list.&lt;/p&gt;&#x27;;
+}
+map.addEventListener(&quot;click&quot;,e=&gt;{if(e.target.closest(&quot;g[role]&quot;))return;if(drag&amp;&amp;drag.moved)return;select(null)});
+
+/* ---------- find ---------- */
+document.getElementById(&quot;q&quot;).addEventListener(&quot;input&quot;,e=&gt;{
+  const q=e.target.value.trim().toLowerCase();if(!q){select(null);return}
+  let hit=NODES.find(n=&gt;n.a.toLowerCase().startsWith(q))||NODES.find(n=&gt;!n.svc&amp;&amp;q.length&gt;=4&amp;&amp;n.a.toLowerCase().endsWith(q));
+  if(!hit){const r=ROWS.find(r=&gt;r[5].toLowerCase().startsWith(q)||(&quot;0x&quot;+r[5].toLowerCase()).startsWith(q));if(r)hit=NODES[r[1]]}
+  if(!hit)return;
+  const g=gOf.get(hit.i);if(g&amp;&amp;!g.open){g.open=true;rebuild()}
+  const n=V.byId.get(&quot;n&quot;+hit.i);select(n,true);
+});
+
+/* ---------- theme ---------- */
+const th=document.getElementById(&quot;th&quot;),root=document.documentElement;const modes=[&quot;auto&quot;,&quot;dark&quot;,&quot;light&quot;];let mi=0;
+try{const s=localStorage.getItem(&quot;polymarket-theme&quot;);if(s&amp;&amp;modes.includes(s))mi=modes.indexOf(s)}catch(e){}
+function setTheme(){const m=modes[mi];if(m===&quot;auto&quot;)root.removeAttribute(&quot;data-theme&quot;);else root.setAttribute(&quot;data-theme&quot;,m);th.textContent=&quot;theme: &quot;+m;try{localStorage.setItem(&quot;polymarket-theme&quot;,m)}catch(e){}}
+th.onclick=()=&gt;{mi=(mi+1)%3;setTheme()};setTheme();
+
+/* ---------- start ---------- */
+prepSubs();build();layout();draw();overview();fit();
+addEventListener(&quot;resize&quot;,fit);
+window.__map={rows:()=&gt;V.edges.reduce((s,e)=&gt;s+e.rows.length,0),edges:()=&gt;V.edges.length,nodes:()=&gt;V.nodes.length,
+  open:o=&gt;{GROUPS.forEach(g=&gt;g.open=o);rebuild()},theme:m=&gt;{mi=modes.indexOf(m);setTheme()},fit:fit,
+  size:()=&gt;[LAYOUT.TOTW,LAYOUT.TOTH],sel:id=&gt;{const n=V.byId.get(id);if(n)select(n,true)},ids:()=&gt;V.nodes.map(n=&gt;n.id),
+  zoom:(kk,x,y)=&gt;{k=kk;tx=x;ty=y;apply()}};
+})();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+"></iframe></div><p class=dim><button onclick="document.getElementById('mapf').requestFullscreen()">full screen map</button></p></section>
+<section id=moves><h2>Latest moves</h2><table class=''><tr><th class=r>min ago</th><th>chain</th><th class=r>amount</th><th>from -&gt; to</th><th>tx</th></tr><tr><td class=r>582</td><td>ethereum</td><td class=r>1,548.45 USDT</td><td><span title='0x709de0b97e369661c99ad54f2b858139897d3dba'>0x709d..3dba</span> -> <span title='0x3f7019221a925537dc20767c38e80a7127fb1ffa'>0x3f70..1ffa</span></td><td><a href='https://etherscan.io/tx/0xb7693fa1951570731d9f77451caafa013ff5c4af2ae4738f65b751144b59b0d6'>0xb7693fa1..</a></td></tr><tr><td class=r>1025</td><td>ethereum</td><td class=r>0.10 ETH</td><td><span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span> -> <span title='0xd90e2f925da726b50c4ed8d0fb90ad053324f31b'>0xd90e..f31b</span></td><td><a href='https://etherscan.io/tx/0xf22655c135c2f44df2a76ffe3d891b7dd4ce0253bf7ce671f90adde04da3f002'>0xf22655c1..</a></td></tr><tr><td class=r>1052</td><td>ethereum</td><td class=r>21.69 ETH</td><td><span title='0x9ab3c17b1a37886f1d702945fcf8016e3e549b18'>0x9ab3..9b18</span> -> <span title='0xe5e76a4d73f3bfb5cc9a8f53d4f8459fcac495f6'>0xe5e7..95f6</span></td><td><a href='https://etherscan.io/tx/0x395f63aa9164393592f81315eae087df26cc53bdb98eb32772d7e8140d0f48c7'>0x395f63aa..</a></td></tr><tr><td class=r>1054</td><td>ethereum</td><td class=r>547,045.95 POL</td><td><span title='0x3f7019221a925537dc20767c38e80a7127fb1ffa'>0x3f70..1ffa</span> -> <span title='0x9ab3c17b1a37886f1d702945fcf8016e3e549b18'>0x9ab3..9b18</span></td><td><a href='https://etherscan.io/tx/0x533c7e021e111e2fe4505b9e2b3d8ac959edf58ea9d1d3a297d68727a210ed7e'>0x533c7e02..</a></td></tr><tr><td class=r>1056</td><td>ethereum</td><td class=r>547,045.95 POL</td><td><span title='0x401f6c983ea34274ec46f84d70b31c151321188b'>0x401f..188b</span> -> <span title='0x3f7019221a925537dc20767c38e80a7127fb1ffa'>0x3f70..1ffa</span></td><td><a href='https://etherscan.io/tx/0x744fdeed0629d9704f42817de0cbbe04626a0a8860892fa411daa440a054825f'>0x744fdeed..</a></td></tr><tr><td class=r>1091</td><td>ethereum</td><td class=r>3.14 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0xf34f91f59d10c44b3bf97972dc23f5267b8af75347c5e3eda30e2cf69fcc83bd'>0xf34f91f5..</a></td></tr><tr><td class=r>1094</td><td>ethereum</td><td class=r>3.13 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0x7ea0ee793ed5508d73655abb01e9cfd39425f475bdd9e3720c870a7f586c33c6'>0x7ea0ee79..</a></td></tr><tr><td class=r>1094</td><td>ethereum</td><td class=r>3.13 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0xeb4a8f7cef07fd17faac85f2fc2c099c423acf6841bc781a25a609d47421d12a'>0xeb4a8f7c..</a></td></tr><tr><td class=r>1095</td><td>ethereum</td><td class=r>3.13 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0x56d9f0df1d64d203f49195d9f75c02e5857d5ed165c6491d51583c1b513696f9'>0x56d9f0df..</a></td></tr><tr><td class=r>1095</td><td>ethereum</td><td class=r>3.13 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0x09e83d66d7132250e10643cea25ece1f11b162e0635a9f154da136aa7bf8052d'>0x09e83d66..</a></td></tr><tr><td class=r>1096</td><td>ethereum</td><td class=r>3.13 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0x9e96e841d073607f70e31b1226b6a7f7119ac3fdb4bb568f8e1861094d152877'>0x9e96e841..</a></td></tr><tr><td class=r>1097</td><td>ethereum</td><td class=r>3.13 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0xa6a72a74cb85fed411a3e07058a23ebe6119baacc18143d921eea4a67db024ad'>0xa6a72a74..</a></td></tr><tr><td class=r>1099</td><td>ethereum</td><td class=r>3.14 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0xeb92f201c87b8e1c1d7bfcf252c166a36737b21b716a991d6b6a2988004a11b1'>0xeb92f201..</a></td></tr><tr><td class=r>1099</td><td>ethereum</td><td class=r>85.08 ETH</td><td><span title='0x3f7019221a925537dc20767c38e80a7127fb1ffa'>0x3f70..1ffa</span> -> <span title='0xe5e76a4d73f3bfb5cc9a8f53d4f8459fcac495f6'>0xe5e7..95f6</span></td><td><a href='https://etherscan.io/tx/0x99a8e8f7c681f777e7dcd76c07b273ea746bbb4ff5a3e7c206be85785f0db4f2'>0x99a8e8f7..</a></td></tr><tr><td class=r>1100</td><td>ethereum</td><td class=r>19.33 ETH</td><td><span title='0x74e940e4eb470a9d8b78c5eb8919938041219897'>0x74e9..9897</span> -> <span title='0xe5e76a4d73f3bfb5cc9a8f53d4f8459fcac495f6'>0xe5e7..95f6</span></td><td><a href='https://etherscan.io/tx/0xb8c92ec0a1a71e348aee5d7a8acff6c051264b7080434b3e3f082f3325eda997'>0xb8c92ec0..</a></td></tr><tr><td class=r>1100</td><td>ethereum</td><td class=r>3.14 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0x0c249e80bec671d33a3f56db2780bfc237370fa3760275125692d9db0adb3a60'>0x0c249e80..</a></td></tr><tr><td class=r>1101</td><td>ethereum</td><td class=r>3.13 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0xf5dd364cc04b83c45a58decc483c5e504ba120185324e5d2acd2e42b3f384221'>0xf5dd364c..</a></td></tr><tr><td class=r>1102</td><td>ethereum</td><td class=r>3.13 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0xa4fbe80fc0091ee123c7722e6904cf82bb6b8f9d53d9a79a0827edabfb2dcafa'>0xa4fbe80f..</a></td></tr><tr><td class=r>1103</td><td>ethereum</td><td class=r>3.13 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0x706bf10136f76af75b4f076d6479d2e0903f2bd0136be0ab4ba7d8644c6db238'>0x706bf101..</a></td></tr><tr><td class=r>1103</td><td>ethereum</td><td class=r>3.13 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0x87a4a7718f56d5caa4272be0b9e3c42781399d7cbb63d76e037a9c5c2737947f'>0x87a4a771..</a></td></tr><tr><td class=r>1104</td><td>ethereum</td><td class=r>3.15 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0x5de1d988fed532afcd2ef205c972dbb4ce4de751506e51f5ba5263580c908b61'>0x5de1d988..</a></td></tr><tr><td class=r>1105</td><td>ethereum</td><td class=r>3.15 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0x4a7796f32956f3120c716ce4c4ec744825ad0095789b8fe9d7d861a527bb170e'>0x4a7796f3..</a></td></tr><tr><td class=r>1106</td><td>ethereum</td><td class=r>3.16 ETH</td><td><span title='0x0729e2a4716d9f7dd17858d5d504426d228697f7'>0x0729..97f7</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0xa4ea528e58d5c19564944de1e57082e106eb256505bd160ad03aa3fb01c69627'>0xa4ea528e..</a></td></tr><tr><td class=r>1106</td><td>ethereum</td><td class=r>3.15 ETH</td><td><span title='0x0729e2a4716d9f7dd17858d5d504426d228697f7'>0x0729..97f7</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0x2940dd207f084406e9bc6cc185773455c27c2a75c59c8df03a854f24cfeca2a6'>0x2940dd20..</a></td></tr><tr><td class=r>1108</td><td>ethereum</td><td class=r>3.14 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0x4997ddaef0f969df799c08a7f413dbf789ba2c59a85a06191c3928c77abe4002'>0x4997ddae..</a></td></tr><tr><td class=r>1109</td><td>ethereum</td><td class=r>1.96 ETH</td><td><span title='0xf70da97812cb96acdf810712aa562db8dfa3dbef'>0xf70d..dbef</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://etherscan.io/tx/0xa3e43bdc3c5573343e3a3e006e2bcae409097a1dab37eef3582ce1b894deddc5'>0xa3e43bdc..</a></td></tr><tr><td class=r>1109</td><td>polygon</td><td class=r>5,727,258.45 MATIC</td><td><span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span> -> <span title='0xc91ee0574a14446de200923729c349b9cae19b60'>0xc91e..9b60</span></td><td><a href='https://polygonscan.com/tx/0xe8b8ee79a0e507b88027506f4098cbbcab6557272fb59becc42b53574b3e9f66'>0xe8b8ee79..</a></td></tr><tr><td class=r>1111</td><td>ethereum</td><td class=r>19.33 ETH</td><td><span title='0x3f7019221a925537dc20767c38e80a7127fb1ffa'>0x3f70..1ffa</span> -> <span title='0x74e940e4eb470a9d8b78c5eb8919938041219897'>0x74e9..9897</span></td><td><a href='https://etherscan.io/tx/0x1b8ef2527a9e98ab4e567c5970fc0e1928a7c9e4e2c303ec05a47e459521a7ef'>0x1b8ef252..</a></td></tr><tr><td class=r>1117</td><td>polygon</td><td class=r>4,295,442.00 MATIC</td><td><span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span> -> <span title='0x5392587814ce8c6af6789764f88e5e9ab0b9962c'>0x5392..962c</span></td><td><a href='https://polygonscan.com/tx/0x69e1c3f6c3cc1cacbc145ba0a7b475532d0856522b112add36d4eeb5d84fc0c5'>0x69e1c3f6..</a></td></tr><tr><td class=r>1119</td><td>polygon</td><td class=r>18,613,584.00 MATIC</td><td><span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span> -> <span title='0xe4c4c39c1733e1c7c06b79f97ed442b68df41ec6'>0xe4c4..1ec6</span></td><td><a href='https://polygonscan.com/tx/0x2629289569ea8be042b6706ba0a9e0d76f069247bb115f973fcedc556e8a4f88'>0x26292895..</a></td></tr><tr><td class=r>1145</td><td>polygon</td><td class=r>560,324.05 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0x4d1275abeace2a2af1a056afdf8db45b515098c96ec247486bbcec07d3f60841'>0x4d1275ab..</a></td></tr><tr><td class=r>1147</td><td>polygon</td><td class=r>3,681,681.36 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0xc6fcf3a65c85eb322fe41c193f74bb37845e19be29364b126d3ea7a149f78dcc'>0xc6fcf3a6..</a></td></tr><tr><td class=r>1152</td><td>polygon</td><td class=r>194,415.53 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0x6cb122bb2ee73bd6be95976ad067bd4c521b78ec7ff61d5f35c5018879ac9313'>0x6cb122bb..</a></td></tr><tr><td class=r>1153</td><td>polygon</td><td class=r>619.78 pUSD</td><td><span title='0xe111180000d2663c0091e4f400237545b87b996b'>0xe111..996b</span> -> <span title='0x5a2764fbbe5d139ef0ed988ec5f95320ce730c0b'>0x5a27..0c0b</span></td><td><a href='https://polygonscan.com/tx/0x23b6cacd62841b6988c65c9e8b54bd3f66e4b5924dbd498327105c47919502e6'>0x23b6cacd..</a></td></tr><tr><td class=r>1153</td><td>polygon</td><td class=r>1,270.37 pUSD</td><td><span title='0xe111180000d2663c0091e4f400237545b87b996b'>0xe111..996b</span> -> <span title='0x5a2764fbbe5d139ef0ed988ec5f95320ce730c0b'>0x5a27..0c0b</span></td><td><a href='https://polygonscan.com/tx/0x0082057804eda7bc90fd30c2f2545b553bf637fb1cfa27de8f0611e5877c95a0'>0x00820578..</a></td></tr><tr><td class=r>1155</td><td>polygon</td><td class=r>205,893.47 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0x1df8659eacea76758cf543a6548a6ace16fcbfb58ce9517bafbf9d002317dbe8'>0x1df8659e..</a></td></tr><tr><td class=r>1155</td><td>polygon</td><td class=r>324,330.27 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0xe5c63ff087bb0ce1aeceaa12d391d25f5da7c39aea9b4425bebd965ac8b2af53'>0xe5c63ff0..</a></td></tr><tr><td class=r>1155</td><td>polygon</td><td class=r>2,369,224.35 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0xc4834396c308ae115da7738156f3fe073c30b4badfe743a810533e2b84177add'>0xc4834396..</a></td></tr><tr><td class=r>1155</td><td>polygon</td><td class=r>190,628.84 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0xc29e3446fe720fa4525a9c1de37fd17ad94fd76a3f57a2c087a1750db52d01fe'>0xc29e3446..</a></td></tr><tr><td class=r>1155</td><td>polygon</td><td class=r>196,974.33 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0x45ad5c56a43d15b981fd5b4c36d61231683eacdfeab1623a972310581cc4c93c'>0x45ad5c56..</a></td></tr><tr><td class=r>1156</td><td>polygon</td><td class=r>443,970.79 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0xcc77e0db2e9789e936c7b944c5256fb6fa21fc87aa1734f1092f8c261bcb6583'>0xcc77e0db..</a></td></tr><tr><td class=r>1157</td><td>polygon</td><td class=r>288,475.76 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0xb78f00622228b7ad6bf3150013e6d7b457f894c5e57fe5b70f3f46bcc7228290'>0xb78f0062..</a></td></tr><tr><td class=r>1158</td><td>polygon</td><td class=r>633,182.98 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0x1230e7e2d32d3a28cc0f9ba5f861cfefb8cf811db7b39ea526529a4dd2b2ee7f'>0x1230e7e2..</a></td></tr><tr><td class=r>1158</td><td>polygon</td><td class=r>348,937.82 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0xeb891e4263ad7097c20ca7ff7c22ff2ba60cf7e4c21f1e4496c9ad3ac616c31e'>0xeb891e42..</a></td></tr><tr><td class=r>1158</td><td>polygon</td><td class=r>204,318.69 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0xf4427311339769217c72a11af21ee4e6de8dfdc7c85061a9726da50b591f7e75'>0xf4427311..</a></td></tr><tr><td class=r>1161</td><td>polygon</td><td class=r>882,639.70 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0x425edc0c3165fb7e790e9926eca269be2e29d9f2ad6ce52e9eb4f139465c4ad7'>0x425edc0c..</a></td></tr><tr><td class=r>1165</td><td>polygon</td><td class=r>937,294.25 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0x8feea42178b7b52718f95f4d414fd0e726c44c8a623aa047b3cc0bbbd6ca2138'>0x8feea421..</a></td></tr><tr><td class=r>1166</td><td>polygon</td><td class=r>533,019.04 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0x9f472fb0a4658e4de3fcdb461b5747c7b1888af623fa215cc45a41f258fb8575'>0x9f472fb0..</a></td></tr><tr><td class=r>1167</td><td>polygon</td><td class=r>316,204.07 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0x2dfe1556dad13d45af370cd50d167f2c27f93420c1ab3aca47e9a2b0b8244048'>0x2dfe1556..</a></td></tr><tr><td class=r>1170</td><td>polygon</td><td class=r>232,581.29 MATIC</td><td><span title='0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f'>0xb92f..ff4f</span> -> <span title='0x3f99139f1c5854bb628c2e576aaf638e99dffc18'>0x3f99..fc18</span></td><td><a href='https://polygonscan.com/tx/0x0d166f0b77851ab5fc6580a46d77b88717b3c77be5916132d4a48f787d8807be'>0x0d166f0b..</a></td></tr></table></section>
+</div></div></body></html>
